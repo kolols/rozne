@@ -1,0 +1,60 @@
+#include <iostream>
+
+int main()
+{
+  int x,y,n,ilf,pla,zl=0,xf,yf,skg=3,skp=2;
+  bool wj;
+  std::cout<<"podaj wielkosc planszy"<<std::endl;
+  std::cin>>pla;
+  bool tab[pla][pla];
+  for(int i=0; i<pla; i++){
+        for(int j=0; j<pla; j++){
+            tab[i][j]=false;
+        }
+    }
+    std::cout<<"podaj figury na planszy i ich kordy"<<std::endl;
+    std::cin>>ilf;
+    for(int i;i=0;i++){
+    std::cin>>xf>>yf;
+    tab[xf][yf]=true;
+    }
+      std::cout<<"podaj kordy figury a i ilosc skoków"<<std::endl;
+    std::cin>>x>>y;
+    std::cin>>n;
+    for(int i=0; i<n; i++){                   //wykojune podana ilosc skoków
+        skg=3;
+        skp=2;
+        wj=false;
+        while(skg>0){
+            while(skp>0){
+                if(x+skp<pla && y+skg<pla && tab[x+skp][y+skg]==false){                        //moze skoczyc
+                    for(int k=1; k<skg; k++){
+                        if(tab[x][y+k]==true){                                          //zliczanie w gure
+
+                            ++zl;
+                        }
+                    }
+                    for(int l=1; l<skp; l++){
+                        if(tab[x+l][y+skg]==true){                                    //zliczanie w bok
+
+                            ++zl;
+                        }
+
+                    }
+                    x+=skp;
+                    y+=skg;
+                    wj=true;
+                    break;
+                }
+                else --skp;
+            }
+            if(wj==true)
+                break;
+            --skg;
+        }
+    }
+std::cout<<zl<<std::endl;
+
+
+    return 0;
+}
