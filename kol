@@ -1,0 +1,104 @@
+#include <iostream>
+using namespace std;
+int rwol(int a) {
+	for (int i = 0; i < a; i++) {
+		cout <<" ";
+	}
+	return 0;
+}
+int separ() {
+	for (int i = 0; i < 11; i++) {
+		cout << "-";
+	}
+	return 0;
+}
+
+int linia() {
+	rwol(3);
+	cout << "|";
+	rwol(3);
+	cout << "|";
+	rwol(3);
+	return 0;
+}
+int plan(int tab[3][3]) {
+	for (int i = 1; i < 12; i++) {
+		if (i == 4 || i == 8) {
+			separ();
+			cout << endl;
+		}
+		else if(i==2 || i==6 || i==10){
+			if (i == 2) {
+				cout << " " << tab[0][0] << " | " << tab[0][1] << " | " << tab[0][2] << endl;
+			}
+			if (i == 6) {
+				cout << " " << tab[1][0] << " | " << tab[1][1] << " | " << tab[1][2] << endl;
+			}
+			if (i == 10) {
+				cout << " " << tab[2][0] << " | " << tab[2][1] << " | " << tab[2][2] << endl;
+			}
+		}
+		else {
+			linia();
+			cout << endl;
+		}
+	}
+	return 0;
+}
+                          //sprawdzanie
+int zwy(int tab[3][3]) {
+	for (int i = 0; i < 3; i++) {
+		if (tab[i][0] == tab[i][1] && tab[i][0] == tab[i][2] && tab[i][0] == 0) {
+			cout << "wygral O" << endl;
+			break;
+		}
+		else {
+			cout << " wygral X" << endl;
+			break;
+		}
+	}
+	if (tab[0][0] == tab[1][1] && tab[0][0] == tab[2][2] && tab[0][0] == 0) {
+		cout << "wygral O" << endl;
+
+	}
+	else {
+		cout << " wygral X" << endl;
+
+	}
+	if (tab[0][2] == tab[1][1] && tab[0][2] == tab[2][0] && tab[0][0] == 0) {
+		cout << "wygral O" << endl;
+	}
+	else {
+		cout << " wygral X" << endl;
+	}
+
+	return 0;
+}
+int main() {
+	int b = 1;
+	int  tab[3][3];
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			tab[i][j] = b;
+			b++;
+
+		}
+	}
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			cout << tab[i][j];
+
+		}
+		cout << endl;
+	} 
+
+	plan(tab);
+	/*for (;;) {
+
+	}
+	*/
+
+
+	system("pause");
+	return 0;
+}
