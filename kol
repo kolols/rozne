@@ -1,104 +1,121 @@
 #include <iostream>
-using namespace std;
-int rwol(int a) {
-	for (int i = 0; i < a; i++) {
-		cout <<" ";
-	}
-	return 0;
-}
-int separ() {
-	for (int i = 0; i < 11; i++) {
-		cout << "-";
-	}
-	return 0;
+#include <functional>
+int odz(){                                              //rysuje oddzielenie
+std::cout<<"-----------"<<std::endl;
+return 0;
 }
 
-int linia() {
-	rwol(3);
-	cout << "|";
-	rwol(3);
-	cout << "|";
-	rwol(3);
-	return 0;
+/*int odst(){                             //rysuje odstêp
+std::cout<<"   ";
+return 0;
+}*/
+
+int pion(){
+    std::cout<<"|";
+return 0;
 }
-int plan(int tab[3][3]) {
-	for (int i = 1; i < 12; i++) {
-		if (i == 4 || i == 8) {
-			separ();
-			cout << endl;
-		}
-		else if(i==2 || i==6 || i==10){
-			if (i == 2) {
-				cout << " " << tab[0][0] << " | " << tab[0][1] << " | " << tab[0][2] << endl;
-			}
-			if (i == 6) {
-				cout << " " << tab[1][0] << " | " << tab[1][1] << " | " << tab[1][2] << endl;
-			}
-			if (i == 10) {
-				cout << " " << tab[2][0] << " | " << tab[2][1] << " | " << tab[2][2] << endl;
-			}
-		}
-		else {
-			linia();
-			cout << endl;
-		}
-	}
-	return 0;
+
+int rysuj(int tab[9]){                          //rysuje plansze
+for(int i=0; i<3; i++){
+    int wart=tab[i*3];
+        if(wart==2)
+    std::cout<<" "<<i*3+1<<" ";
+else if(wart==1)
+    std::cout<<" X ";
+else if(wart==0)
+    std::cout<<" O ";
+    pion();
+    wart=tab[i*3+1];
+        if(wart==2)
+    std::cout<<" "<<i*3+2<<" ";
+else if(wart==1)
+    std::cout<<" X ";
+else if(wart==0)
+    std::cout<<" O ";
+    pion();
+    wart=tab[i*3+2];
+        if(wart==2)
+    std::cout<<" "<<i*3+3<<" ";
+else if(wart==1)
+    std::cout<<" X ";
+else if(wart==0)
+    std::cout<<" O ";
+    std::cout<<std::endl;
+    if(i<2)
+    odz();
 }
-                          //sprawdzanie
-int zwy(int tab[3][3]) {
-	for (int i = 0; i < 3; i++) {
-		if (tab[i][0] == tab[i][1] && tab[i][0] == tab[i][2] && tab[i][0] == 0) {
-			cout << "wygral O" << endl;
-			break;
-		}
-		else {
-			cout << " wygral X" << endl;
-			break;
-		}
-	}
-	if (tab[0][0] == tab[1][1] && tab[0][0] == tab[2][2] && tab[0][0] == 0) {
-		cout << "wygral O" << endl;
-
-	}
-	else {
-		cout << " wygral X" << endl;
-
-	}
-	if (tab[0][2] == tab[1][1] && tab[0][2] == tab[2][0] && tab[0][0] == 0) {
-		cout << "wygral O" << endl;
-	}
-	else {
-		cout << " wygral X" << endl;
-	}
-
-	return 0;
+return 0;
 }
-int main() {
-	int b = 1;
-	int  tab[3][3];
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
-			tab[i][j] = b;
-			b++;
-
-		}
-	}
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
-			cout << tab[i][j];
-
-		}
-		cout << endl;
-	} 
-
-	plan(tab);
-	/*for (;;) {
-
-	}
-	*/
 
 
-	system("pause");
-	return 0;
+int spraw(int tab[9]){                  //1 to X a 0 to O;
+
+    if(tab[0]== tab[4] && tab[0]==tab[8] && tab[0]==0){
+        std::cout<<"Wygralo 0 Gratulacje!!"<<std::endl;                        // sprawdzanie skos lewa góra prawy dół
+
+    }
+    else{ if(tab[0]== tab[4] && tab[0]==tab[8] &&  tab[0]==1) std::cout<<"Wygralo X Gratulacje!!"<<std::endl;
+
+    }
+
+    if(tab[2]== tab[4] && tab[2]==tab[6] && tab[2]==0){              //sprawdzanie skok prawa góra lewy dół
+        std::cout<<"Wygralo 0 Gratulacje!!"<<std::endl;
+
+    }
+    else{ if(tab[2]== tab[4] && tab[2]==tab[6] && tab[2]==1) std::cout<<"Wygralo X Gratulacje!!"<<std::endl;
+
+    }
+for(int i=0; i<3; i++){                                  //sprawdzanie poziomo
+
+if(tab[i*3]==tab[i*3+1] && tab[i*3]==tab[i*3+2] && tab[i*3]==0){
+     std::cout<<"Wygralo 0 Gratulacje!!"<<std::endl;
+
+}
+else{ if(tab[i*3]==tab[i*3+1] && tab[i*3]==tab[i*3+2] && tab[i*3]==1) std::cout<<"Wygralo X Gratulacje!!"<<std::endl;
+
+    }
+}
+for(int i=0; i<3; i++){                                  //sprawdzanie pionowo
+
+    if(tab[i]==tab[i+3] && tab[i]==tab[i+6] && tab[i]==0){
+     std::cout<<"Wygralo 0 Gratulacje!!"<<std::endl;
+
+}
+else{ if(tab[i]==tab[i+3] && tab[i]==tab[i+6] && tab[i]==1) std::cout<<"Wygralo X Gratulacje!!"<<std::endl;
+
+    }
+}
+
+return 0;
+}
+
+
+int main()
+{
+    int tab[9];
+    int ruch;
+    for(int i=0; i<9; i++){
+        tab[i]=2;
+    }
+    std::cout<<"Zaczyna [X] wybierz numer aby wpisac";
+    std::cout<<std::endl;
+for(;;){
+        spraw(tab);
+    std::cout<<rysuj(tab)<<std::endl;
+    std::cout<<"Ruch [X] wybierz numer aby wpisać "<<std::endl;
+    std::cin>>ruch;
+    if(tab[ruch-1]!=2){
+            std::cout<<"Zajęte pole tracisz ruch"<<std::endl;
+    }else tab[ruch-1]=1;
+    std::cout<<rysuj(tab)<<std::endl;
+    spraw(tab);
+    std::cout<<"Ruch [O] wybierz numer aby wpisać "<<std::endl;
+    std::cin>>ruch;
+      if(tab[ruch-1]!=2){
+            std::cout<<"Zajęte pole tracisz ruch"<<std::endl;
+    }else tab[ruch-1]=0;
+}
+
+
+    return 0;
 }
