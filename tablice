@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+#define ROZMIAR_TABLICY 10
+
+void main(void)
+{
+  int a, i, sum, max;
+  int tablica_int[ROZMIAR_TABLICY] = {0};
+  float tab[ROZMIAR_TABLICY] ={0};
+  i=0;
+   while(i<8){
+	tablica_int[i]=i*2+1;
+	tab[i]=i*0.42+1;
+	i++;
+}
+ /*for(int i=0; i<ROZMIAR_TABLICY; i++){
+printf("Podaj wartosc dla: tablica_int[%d] \t", i);
+	scanf("%d", &a);
+	tablica_int[i]=a;
+}*/
+i=0;
+max=tablica_int[0];
+  do{
+	if(tablica_int[i]>max){
+	max=tablica_int[i];	
+	}
+	sum=sum+tablica_int[i];
+    printf("Iteracja %d: tablica_int[%d] = %d\n", i, i, tablica_int[i]);
+	i++;
+  }while(i<ROZMIAR_TABLICY);
+
+for(int i=0; i<ROZMIAR_TABLICY; i++){
+printf("Iteracja %d: tablica_float[%d] = %f\n", i, i, tab[i]);
+
+}
+
+printf("suma danych to %d,   maxaimum to %d \n", sum, max);
+printf("Podaj szukana wartosc w intach \n");
+scanf("%d", &a);
+for(int i=0; i<ROZMIAR_TABLICY; i++){
+if(a==tablica_int[i]){
+	printf("to jest w miejscu tablica_int[%d]= %d\n", i, a);
+	}
+ }
+float b;
+printf("Podaj szukana wartosc w floatach\n");       // tolerancja 0.2
+scanf("%f", &b);
+for(int i=0; i<ROZMIAR_TABLICY; i++){
+if(b-tab[i]<0.2 && b-tab[i]>(-0.2)){
+	printf("to jest w miejscu tablica_float[%d]= %f\n", i, tab[i]);
+	}
+ }
+}
