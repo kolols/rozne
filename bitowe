@@ -1,0 +1,42 @@
+#include <iostream>
+
+
+
+int main()
+{
+    int x, p=1, c,k, zl=0;
+    int tab[100];
+    std::cin>>x;
+    c=x&p;
+   // std::cout<<c;
+   k=0;
+
+    while(p<=x){
+           // std::cout<<p<<std::endl;
+    c=p&x;
+            if((p&x)==p){
+                    tab[k]=1;
+                    zl++;
+
+            }else tab[k]=0;
+
+        p=p<<1;
+        k++;
+    }
+   // std::cout<<k<<std::endl;
+for(int i=k-1; i>=0; i--){
+    std::cout<<tab[i];
+}
+std::cout<<std::endl<<zl<<std::endl;
+c=0;
+for(int i=k-1; i>=0; i--){
+    if(tab[i]!=tab[k-1-i]){
+        c=1;
+    }
+}
+if(c==0){
+    std::cout<<"liczba binarnie palindrom"<<std::endl;
+}else std::cout<<"nie jest";
+
+    return 0;
+}
