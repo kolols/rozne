@@ -1,0 +1,68 @@
+#include <iostream>
+#include <vector>
+
+void wyp_mac(int mac[6][6]) {
+	for (int i=0; i < 6; i++) {
+		for (int j=0; j < 6; j++) {
+			std::cout << mac[i][j]<<" ";
+		}
+		std::cout << std::endl;
+	}
+}
+void wyp_lista(int lista[6][6]) {
+	for (int i = 0; i < 6; i++) {
+		for (int j = 0; j < 6; j++) {
+			if (lista[i][j] == 0) {
+				break;
+			}
+			std::cout << lista[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
+}
+/*int wyp_list(std::vector<std::vector<int> > lista;) {
+	for()
+
+	return 0;
+}*/
+
+int main() {
+	int prz;
+	int mac [6][6];
+	int lista[6][6];
+	for (int i=0; i < 6; i++) {
+		for (int j=0; j < 6; j++) {
+			mac[i][j] = 0;
+		}
+	}
+
+	
+	mac[0][1] = 1;
+	mac[1][2] = 1;
+	mac[2][3] = 1;
+	mac[3][4] = 1;
+	mac[4][5] = 1;
+	mac[5][0] = 1;
+	mac[5][3] = 1;
+	for (int i = 0; i < 6; i++) {
+		prz = 0;
+		for (int j = 0; j < 6; j++) {
+			if (mac[i][j] == 1) {
+				lista[i][prz] = j+1;
+				prz++;
+			}
+		}
+		for (int k = prz; k < 6; k++) {
+			lista[i][k] = 0;
+		}
+
+	}
+	wyp_mac(mac);
+	std::cout << std::endl;
+	wyp_lista(lista);
+
+
+
+	system("pause");
+	return 0;
+}
